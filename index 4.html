@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="pt">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quiz do Rafa</title>
+  <title>Quiz do Luís</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -25,11 +24,11 @@
       cursor: pointer;
     }
     .correct {
-      background-color: #4CAF50 !important;
+      background-color: #4CAF50;
       color: white;
     }
     .incorrect {
-      background-color: #f44336 !important;
+      background-color: #f44336;
       color: white;
     }
     #result {
@@ -50,7 +49,7 @@
   </style>
 </head>
 <body>
-  <h1>Quiz: Quanto sabes sobre o Rafa?</h1>
+  <h1>Quiz: Quanto sabes sobre o Luís?</h1>
   <div id="quiz"></div>
   <div id="result"></div>
   <button class="share-button" onclick="shareResult()" style="display:none">Partilhar no WhatsApp</button>
@@ -58,79 +57,64 @@
   <script>
     const quizData = [
       {
-        question: "Qual é a viagem de sonho do Rafa?",
-        correct: "Japão",
-        options: ["Brasil", "Dubai", "Maldivas"]
+        question: "Qual é a viagem de sonho do Luís?",
+        correct: "Estados Unidos",
+        options: ["Japão", "Maldivas", "China"]
       },
       {
-        question: "Qual é a cor favorita do Rafa?",
-        correct: "Laranja",
-        options: ["Azul", "Verde", "Cinza"]
+        question: "Qual é a cor favorita do Luís?",
+        correct: "Preto",
+        options: ["Branco", "Azul", "Vermelho"]
       },
       {
-        question: "Se o Rafa só pudesse comer uma comida para o resto da vida, qual seria?",
-        correct: "Picanha",
-        options: ["Francesinha", "Panados com arroz branco", "Carne de porco à alentejana"]
+        question: "Se o Luís só pudesse comer uma comida para o resto da vida, qual seria?",
+        correct: "Francesinha",
+        options: ["Picanha", "Lombinhos com champignon", "Bacalhau com natas"]
       },
       {
-        question: "Qual foi o primeiro nome na camisola do Rafa no Bairro FC?",
-        correct: "R. Soares",
-        options: ["Rafa", "R. Faria", "Soares"]
+        question: "Qual foi o primeiro clube onde jogou o Luís?",
+        correct: "Carreira",
+        options: ["Bairro", "Delães", "Ruivanense"]
       },
       {
-        question: "Quando é que o Rafa começou a trabalhar na ERA?",
-        correct: "15 de abril de 2021",
-        options: ["15 de abril de 2022", "15 de Janeiro de 2022", "15 de janeiro 2021"]
+        question: "Quantos trabalhos teve o Luís antes da ERA?",
+        correct: "3",
+        options: ["1", "2", "4"]
       },
       {
-        question: "Qual é o carro de sonho do Rafa?",
-        correct: "Porsche 912 GT3 RS",
-        options: ["Lamborghini", "Audi RS5 dos novos", "Ferrari 574"]
+        question: "Qual é o carro de sonho do Luís?",
+        correct: "Ferrari 488 Pista",
+        options: ["Lamborghini Aventador", "Porsche GT3", "Bugatti Veyron"]
       },
       {
-        question: "Quem era o melhor amigo do Rafa no externato?",
-        correct: "Trina",
-        options: ["Darja", "Bruno", "Isolino"]
+        question: "Qual a série favorita do Luís?",
+        correct: "Suits",
+        options: ["Walking Dead", "Lucifer", "Prison Break"]
       },
       {
-        question: "Que música o Rafa estava a tentar cantar no vídeo do 'Faltou-me as palavras'?",
-        correct: "Brilhantes Diamantes - Maze",
-        options: ["Verão Azul - D'zrt", "Namorada - Angélico Vieira", "Sabemos onde vamos - Mundo Secreto"]
+        question: "Qual a marca de sapatilhas preferida do Luís?",
+        correct: "Nike",
+        options: ["Adidas", "New Balance", "Louis Vuitton"]
       },
       {
-        question: "Qual era o nome do chalet onde o Rafa trabalhou na Suíça?",
-        correct: "Hakuna",
-        options: ["Matata", "Hakuna Matata", "Maison Stroll"]
+        question: "Qual a bebida preferida do Luís?",
+        correct: "Pepsi Max",
+        options: ["Cola Zero", "Sumol", "Compal Pessego"]
       },
       {
-        question: "Qual é a bebida favorita do Rafa?",
-        correct: "Água",
-        options: ["Sumol de laranja", "Leite chocolatado Mimosa Magro", "Compal Manga laranja"]
+        question: "Quanto calça o Luís?",
+        correct: "40",
+        options: ["41", "42", "40.5"]
       },
       {
-        question: "Quando nasceu o único sobrinho do Rafa?",
-        correct: "23 de Outubro",
-        options: ["22 de Outubro", "23 de Novembro", "21 de Setembro"]
+        question: "Quantas respostas erradas teve o Luís no exame de código?",
+        correct: "3",
+        options: ["1", "2", "0"]
       },
       {
-        question: "Quando começou o Rafa a viver em Vila das Aves?",
-        correct: "21 de Outubro de 2023",
-        options: ["21 de outubro de 2022", "20 de Outubro de 2023", "20 de Setembro de 2022"]
-      },
-      {
-        question: "Qual foi a primeira consola do Rafa?",
-        correct: "PS1",
-        options: ["PS2", "PS3", "PSP"]
-      },
-      {
-        question: "Quanto calça o Rafa?",
-        correct: "41",
-        options: ["40", "42", "42,5"]
-      },
-      {
-        question: "Quantas respostas erradas teve o Rafa no exame de código?",
-        correct: "1",
-        options: ["0", "2", "3"]
+        question: "Qual o jogador favorito do Luís na atualidade?",
+        correct: "Jude Bellingham",
+        options: ["Rodrygo", "Valverde", "CR7"]
       }
     ];
 
@@ -165,21 +149,17 @@
         const btn = document.createElement('button');
         btn.textContent = answer;
         btn.onclick = () => {
-          const buttons = Array.from(answersEl.children);
-          buttons.forEach(b => {
-            b.disabled = true;
-            if (b.textContent === q.correct) {
-              b.classList.add('correct');
-            }
-          });
-
           if (answer === q.correct) {
             btn.classList.add('correct');
             score++;
           } else {
             btn.classList.add('incorrect');
+            const buttons = Array.from(answersEl.children);
+            const correctBtn = buttons.find(b => b.textContent === q.correct);
+            if (correctBtn) correctBtn.classList.add('correct');
           }
 
+          Array.from(answersEl.children).forEach(b => b.disabled = true);
           setTimeout(() => {
             currentQuestion++;
             loadQuestion();
@@ -193,7 +173,7 @@
     }
 
     function shareResult() {
-      const text = `Acabei o quiz do Rafa e acertei ${score} em ${quizData.length} perguntas! Consegues bater-me?`; 
+      const text = `Acabei o quiz do Luís e acertei ${score} em ${quizData.length} perguntas! Consegues bater-me?`;
       const url = encodeURIComponent(window.location.href);
       const shareUrl = `https://wa.me/?text=${encodeURIComponent(text)}%20${url}`;
       window.open(shareUrl, '_blank');
