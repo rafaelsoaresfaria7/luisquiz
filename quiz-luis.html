@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz do Luís</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f0f0f0;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .answers button {
+      display: block;
+      margin: 5px 0;
+      padding: 10px;
+      width: 100%;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .correct {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .incorrect {
+      background-color: #f44336;
+      color: white;
+    }
+    #result {
+      font-size: 20px;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    .share-button {
+      margin-top: 20px;
+      background-color: #25D366;
+      color: white;
+      padding: 10px;
+      border: none;
+      width: 100%;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Quiz: Quanto sabes sobre o Luís?</h1>
+  <div id="quiz"></div>
+  <div id="result"></div>
+  <button class="share-button" onclick="shareResult()" style="display:none">Partilhar no WhatsApp</button>
+
+  <script>
+    const quizData = [
+      {
+        question: "Qual é a viagem de sonho do Luís?",
+        correct: "Estados Unidos",
+        options: ["Japão", "Maldivas", "China"]
+      },
+      {
+        question: "Qual é a cor favorita do Luís?",
+        correct: "Preto",
+        options: ["Branco", "Azul", "Vermelho"]
+      },
+      {
+        question: "Se o Luís só pudesse comer uma comida para o resto da vida, qual seria?",
+        correct: "Francesinha",
+        options: ["Picanha", "Lombinhos com champignon", "Bacalhau com natas"]
+      },
+      {
+        question: "Qual foi o primeiro clube onde o Luís jogou?",
+        correct: "Carreira",
+        options: ["Bairro", "Delães", "Ruivanense"]
+      },
+      {
+        question: "Quantos trabalhos teve o Luís antes de trabalhar na ERA?",
+        correct: "3",
+        options: ["1", "2", "4"]
+      },
+      {
+        question: "Qual é o carro de sonho do Luís?",
+        correct: "Ferrari 488 Pista",
+        options: ["Lamborghini Aventador", "Porsche GT3", "Bugatti Veyron"]
+      },
+      {
+        question: "Qual a série favorita do Luís, de sempre?",
+        correct: "Suits",
+        options: ["Walking Dead", "Lucifer", "Prison Break"]
+      },
+      {
+        question: "Qual a marca de sapatilhas preferida do Luís?",
+        correct: "Nike",
+        options: ["Adidas", "New Balance", "Louis Vuitton"]
+      },
+      {
+        question: "Qual a bebida preferida do Luís?",
+        correct: "Pepsi Max",
+        options: ["Cola Zero", "Sumol", "Compal Pêssego"]
+      },
+      {
+        question: "Quanto calça o Luís?",
+        correct: "40",
+        options: ["41", "42", "40.5"]
+      },
+      {
+        question: "Quantas respostas erradas teve o Luís no exame de código?",
+        correct: "3",
+        options: ["1", "2", "0"]
+      },
+      {
+        question: "Qual o jogador favorito do Luís na atualidade?",
+        correct: "Jude Bellingham",
+        options: ["Rodrygo", "Valverde", "CR7"]
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    function shuffle(array) {
+      return array.sort(() => Math.random() - 0.5);
+    }
+
+    function loadQuestion() {
+      const container = document.getElementById('quiz');
+      container.innerHTML = '';
+
+      if (currentQuestion >= quizData.length) {
+        document.getElementById('result').textContent = `Acertaste ${score} em ${quizData.length} perguntas!`;
+        document.querySelector('.share-button').style.display = 'block';
+        return;
+      }
+
+      const q = quizData[currentQuestion];
+      const allAnswers = shuffle([q.correct, ...q.options]);
+
+      const qEl = document.createElement('div');
+      qEl.className = 'question';
+      qEl.innerHTML = `<h3>${currentQuestion + 1}. ${q.question}</h3>`;
+
+      const answersEl = document.createElement('div');
+      answersEl.className = 'answers';
+
+      allAnswers.forEach(answer => {
+        const btn = document.createElement('button');
+        btn.textContent = answer;
+        btn.onclick = () => {
+          if (answer === q.correct) {
+            btn.classList.add('correct');
+            score++;
+          } else {
+            btn.classList.add('incorrect');
+            Array.from(answersEl.children).forEach(b => {
+              if (b.textContent === q.correct) {
+                b.classList.add('correct');
+              }
+            });
+          }
+
+          Array.from(answersEl.children).forEach(b => b.disabled = true);
+          setTimeout(() => {
+            currentQuestion++;
+            loadQuestion();
+          }, 1000);
+        };
+        answersEl.appendChild(btn);
+      });
+
+      container.appendChild(qEl);
+      container.appendChild(answersEl);
+    }
+
+    function shareResult() {
+      const text = `Acabei o quiz do Luís e acertei ${score} em ${quizData.length} perguntas! Consegues bater-me?`; 
+      const url = encodeURIComponent(window.location.href);
+      const shareUrl = `https://wa.me/?text=${encodeURIComponent(text)}%20${url}`;
+      window.open(shareUrl, '_blank');
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>
